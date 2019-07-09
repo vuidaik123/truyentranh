@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "317525118871",
+    "firebase_url": "https://truyentranh-fc749.firebaseio.com",
+    "project_id": "truyentranh-fc749",
+    "storage_bucket": "truyentranh-fc749.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317525118871:android:c6c6ec8f18c292a8",
+        "android_client_info": {
+          "package_name": "com.example.kimvui.truyentranh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317525118871-jj9f2ro8a6dui99ff9l8pecieusiemlu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kimvui.truyentranh",
+            "certificate_hash": "5de6e23634752b74fadbbbce36ec391e5fb6fb8b"
+          }
+        },
+        {
+          "client_id": "317525118871-i8nti0a32d58f265pgjek0fp4gahup97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrhKqpxA9GTyb7I9RLbHUpDza5CYvI518"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317525118871-i8nti0a32d58f265pgjek0fp4gahup97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
