@@ -1,10 +1,5 @@
 package com.example.kimvui.truyentranh;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,10 +9,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+//import com.google.firebase.iid.InstanceIdResult;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MyFirebase";
     private NotificationCompat.Builder notBuilder;
     private static final int MY_NOTIFICATION_ID = 12345;
 
@@ -54,12 +49,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         fragment = new FragmentComic();
         LoadFragment(fragment);
-
+//        FirebaseInstanceId.getInstance().getInstanceId()
+//                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, task.getException());
+//                            return;
+//                        }
+//
+//                        // Get new Instance ID token
+//                        String token = task.getResult().getToken();
+//
+//                        // Log and toast
+//                        String msg = getString(R.string.project_id, token);
+////                        Log.d(TAG, msg);
+////                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
     }
 
@@ -70,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
     public void comicoffline(View v) {
-        BottomNavigationView navigation = (BottomNavigationView)findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_dashboard);
     }
 
