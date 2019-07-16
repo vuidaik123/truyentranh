@@ -1,22 +1,15 @@
 package com.example.kimvui.truyentranh;
 
 import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -57,29 +50,27 @@ public class FragmentComic extends Fragment implements IComicLoadDone, IBannerLo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        btnSend = (Button)view.findViewById(R.id.btn_send);
-//        btnSend.setOnClickListener(this);
-//        this.notBuilder = new NotificationCompat.Builder(getActivity());
-//        this.notBuilder.setAutoCancel(true);
+        //btnSend = (Button)view.findViewById(R.id.btn_send);
+        this.notBuilder = new NotificationCompat.Builder(getActivity());
+        this.notBuilder.setAutoCancel(true);
         boolean ret = ConnectionReceiver.isConnected();
         if (ret == true) {
             view=inflater.inflate(R.layout.fragment_comic,container,false);
 
         banners=FirebaseDatabase.getInstance().getReference("Banners");
         comics=FirebaseDatabase.getInstance().getReference("Comics");
-        slider=(Slider)view.findViewById(R.id.slider);
-        slider.init(new PicassoLoadingService());
+            slider = view.findViewById(R.id.slider);
+            Slider.init(new PicassoLoadingService());
         comicListener=this;
         bannerListener=this;
-
-        btn_seach= (ImageView)view.findViewById(R.id.btn_seach);
+            btn_seach = view.findViewById(R.id.btn_seach);
         btn_seach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),SeachActivity.class));
             }
         });
-        swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+            swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -95,11 +86,11 @@ public class FragmentComic extends Fragment implements IComicLoadDone, IBannerLo
                 loadComic();
             }
         });
-        recyclerView_comic=(RecyclerView)view.findViewById(R.id.recycler_comic);
+            recyclerView_comic = view.findViewById(R.id.recycler_comic);
         recyclerView_comic.setHasFixedSize(true);
         recyclerView_comic.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
-        tv_comic=(TextView)view.findViewById(R.id.tv_comic);
+            tv_comic = view.findViewById(R.id.tv_comic);
         } else {
             Toast.makeText(getContext(), "Thiết bị chưa kết nối internet", Toast.LENGTH_SHORT).show();
             view=inflater.inflate(R.layout.activity_check_internet,container,false);
@@ -169,49 +160,8 @@ public class FragmentComic extends Fragment implements IComicLoadDone, IBannerLo
             alertDialog.dismiss();
     }
 
-
-
-    public void notiButtonClicked(View view)  {
-
-        // --------------------------
-        // Chuẩn bị một thông báo
-        // --------------------------
-
-        this.notBuilder.setSmallIcon(R.mipmap.ic_launcher);
-        this.notBuilder.setTicker("This is a ticker");
-
-        // Sét đặt thời điểm sự kiện xẩy ra.
-        // Các thông báo trên Panel được sắp xếp bởi thời gian này.
-        this.notBuilder.setWhen(System.currentTimeMillis()+ 10* 1000);
-        this.notBuilder.setContentTitle("This is title");
-        this.notBuilder.setContentText("This is content text ....");
-
-        // Tạo một Intent
-        Intent intent = new Intent(getActivity(), FragmentComic.class);
-
-
-        // PendingIntent.getActivity(..) sẽ start mới một Activity và trả về
-        // đối tượng PendingIntent.
-        // Nó cũng tương đương với gọi Context.startActivity(Intent).
-        PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), MY_REQUEST_CODE,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-        this.notBuilder.setContentIntent(pendingIntent);
-
-        // Lấy ra dịch vụ thông báo (Một dịch vụ có sẵn của hệ thống).
-        NotificationManager notificationService  =
-                (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Xây dựng thông báo và gửi nó lên hệ thống.
-
-        Notification notification =  notBuilder.build();
-        notificationService.notify(MY_NOTIFICATION_ID, notification);
-
-    }
-
     @Override
     public void onClick(View v) {
-       
+
     }
 }

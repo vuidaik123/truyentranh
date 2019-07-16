@@ -7,7 +7,6 @@ public class Chapter  implements Serializable {
     public String Name;
     public List<String> Links;
     public Chapter(){
-
     }
 
 }

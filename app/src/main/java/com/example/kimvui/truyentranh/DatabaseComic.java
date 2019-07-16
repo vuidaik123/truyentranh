@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,6 @@ public class DatabaseComic extends SQLiteOpenHelper {
         ContentValues values=new ContentValues();
         values.put("name",comics.Name);
         values.put("image",comics.Image);
-        values.put("catogery",comics.Catogery);
         values.put("chapter", String.valueOf(comics.Chapters));
         db.insertOrThrow("tb_contacts",null,values);
         db.close();

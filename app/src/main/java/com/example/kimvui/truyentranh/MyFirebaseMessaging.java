@@ -25,7 +25,6 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
                 remoteMessage.getNotification().getBody());
 
     }
-
     public void showNotification(String title, String massaging) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
